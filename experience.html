@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>My Web Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Story+Script&display=swap" rel="stylesheet">
+
+    
+    <style>
+        button {
+            background-color: #78c0f0; /* White background */
+            border: rgb(255, 255, 255) 2px solid; /* Black border */
+            color: #ffffff; /* Blue text */
+            padding: 10px 15px 10px; /* Some padding */
+            cursor: pointer; /* Pointer/hand icon on hover */
+            font-size: 20px; /* Increase font size */
+            margin: 5px 0px 3px 10px; /* Some margin */
+            border-radius: 6px; /* Rounded corners */
+            transition: background-color 0.6s, color 0.6s; /* Smooth transition for hover effects */
+            font-family: 'Poppins', sans-serif; /* Poppins font */
+            font-weight: 550; /* Medium weight */
+            box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+            letter-spacing: 0.5px; /* Slightly increased letter spacing */
+            text-transform: uppercase; /* Uppercase text */
+            width: 120px; /* Fixed width for uniformity */
+            height: 40px; /* Fixed height for uniformity */
+            display: inline-block; /* Align buttons horizontally */
+            text-align: center; /* Center text */
+            line-height: 20px; /* Adjust line height for better vertical alignment */
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+            font-size: 14px; /* Slightly smaller font size for better fit */
+            font-weight: 600; /* Semi-bold weight */
+            letter-spacing: 1px; /* Increased letter spacing for better readability */
+            text-transform: uppercase; /* Uppercase text for a modern look */
+            transition: all 0.3s ease; /* Smooth transition for all properties */
+            user-select: none; /* Prevent text selection on click */
+            outline: none; /* Remove default outline */
+            vertical-align: middle; /* Align buttons vertically in the middle */
+            white-space: nowrap; /* Prevent text from wrapping */
+            margin: 10px; /* Margin around buttons */
+        }
+
+        button:hover {
+            background-color: #4ba1fc; /* Blue background on hover */
+            color: #ffffff; /* White text on hover */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+        }
+        button:active {
+            background-color: #0485e2; /* Darker blue background on click */
+            color: #ffffff; /* White text on click */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow on click */
+            transform: translateY(2px); /* Slightly move button down on click */
+        }
+        button:focus {
+            outline: none; /* Remove default outline on focus */
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Custom focus outline */
+        }
+        button:disabled {
+            background-color: #cccccc; /* Grey background for disabled button */
+            color: #666666; /* Dark grey text for disabled button */
+            cursor: not-allowed; /* Not-allowed cursor for disabled button */
+            box-shadow: none; /* Remove shadow for disabled button */
+        }
+        button:disabled:hover {
+            background-color: #cccccc; /* Maintain grey background on hover */
+            color: #666666; /* Maintain dark grey text on hover */
+            box-shadow: none; /* No shadow on hover */
+        }
+        button:disabled:active {
+            background-color: #cccccc; /* Maintain grey background on click */
+            color: #666666; /* Maintain dark grey text on click */
+            box-shadow: none; /* No shadow on click */
+            transform: none; /* No movement on click */
+        }
+        button:disabled:focus {
+            outline: none; /* Remove default outline on focus */
+            box-shadow: none; /* No focus outline */
+        }
+        button:visited {
+            color: #ffffff; /* Maintain white text for visited buttons */
+        }
+        button::after {
+            content: ''; /* Empty content for pseudo-element */
+            display: block; /* Block display for better layout control */
+            width: 0; /* Initial width */
+            height: 1px; /* Height of the underline */
+            background-color: #ffffff; /* White underline color */
+            transition: width 0.3s ease; /* Smooth width transition */
+            margin-top: 0px; /* Margin above the underline */
+            margin-left: auto; /* Center underline horizontally */
+            margin-right: auto; /* Center underline horizontally */
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+            text-align: center; /* Center align text */
+        }
+        button:hover::after {
+            width: 100%; /* Full width underline on hover */
+            transition: width 0.3s ease; /* Smooth width transition */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
+        button:active::after {
+            width: 100%; /* Full width underline on click */
+            transition: width 0.3s ease; /* Smooth width transition */
+        }
+        button:focus::after {
+            width: 100%; /* Full width underline on focus */
+            transition: width 0.3s ease; /* Smooth width transition */
+        }        
+        p {
+            font-family: 'Poppins', sans-serif; /* Poppins font for paragraphs */
+            font-size: 16px; /* Standard font size */
+            color: #ffffff; /* White text color */
+            line-height: 1.6; /* Improved line height for readability */
+            margin: 10px 0; /* Margin around paragraphs */
+            text-align: center; /* Center align text */
+            letter-spacing: 0.5px; /* Slightly increased letter spacing */
+            word-spacing: 1px; /* Slightly increased word spacing */
+            max-width: 700px; /* Limit maximum width for better readability */
+            margin-left: auto; /* Center paragraph horizontally */
+            margin-right: auto; /* Center paragraph horizontally */
+            text-transform: none; /* Normal text transformation */
+        }
+        h3 {
+            font-family: 'Poppins', sans-serif; /* Poppins font for h3 */
+            font-size: 20px; /* Larger font size for h3 */
+            color: #ffffff; /* White text color */
+            margin: 15px 0; /* Margin around h3 */
+            font-weight: 600; /* Semi-bold weight for h3 */
+            text-align: center; /* Center align text */
+            letter-spacing: 1px; /* Slightly increased letter spacing */
+            word-spacing: 2px; /* Slightly increased word spacing */
+        }
+        h2 {
+            font-family: 'Poppins', sans-serif; /* Poppins font for h2 */
+            font-size: 14px; /* Slightly smaller font size for h2 */
+            color: #ffffff; /* White text color */
+            margin: 5px 0 15px 0; /* Margin around h2 */
+            font-weight: 400; /* Normal weight for h2 */
+            text-align: center; /* Center align text */
+            letter-spacing: 1px; /* Slightly increased letter spacing */
+            word-spacing: 2px; /* Slightly increased word spacing */
+            line-height: 1.4; /* Improved line height for readability */
+            text-transform: uppercase; /* Uppercase text for a modern look */
+            user-select: none; /* Prevent text selection */
+            padding-top: 3px; /* Padding inside the h2 */
+            -webkit-font-smoothing: antialiased; /* Improve font rendering */
+            -moz-osx-font-smoothing: grayscale; /* Improve font rendering on macOS */
+        }
+        h1 {
+            font-family: 'Great Vibes', cursive; /* Great Vibes font for h1 */
+            font-size: 46px; /* Large font size for h1 */
+            color: #ffffff; /* White text color */
+            margin: 15px 0; /* Margin around h1 */
+            font-weight: 400; /* Normal weight for h1 */
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle text shadow for better readability */
+            letter-spacing: 1px; /* Slightly increased letter spacing */
+            text-align: center; /* Center align text */
+            line-height: 1.2; /* Improved line height for readability */
+            word-spacing: 2px; /* Slightly increased word spacing */
+            text-transform: none; /* Normal text transformation */
+            max-width: 90%; /* Limit maximum width for better readability */
+            margin-left: auto; /* Center h1 horizontally */
+            margin-right: auto; /* Center h1 horizontally */
+            overflow: hidden; /* Prevent overflow */
+            white-space: nowrap; /* Prevent text wrapping */
+            text-overflow: ellipsis; /* Ellipsis for overflowed text */
+            padding: 0 10px; /* Padding inside the h1 */
+            box-sizing: border-box; /* Include padding in element's total width and height */
+            margin-top: 30px; /* Margin above h1 */
+            margin-bottom: 10px; /* Margin below h1 */
+            line-height: 1.2; /* Improved line height for readability */
+            user-select: none; /* Prevent text selection */
+            -webkit-font-smoothing: antialiased; /* Improve font rendering */
+            -moz-osx-font-smoothing: grayscale; /* Improve font rendering on macOS */
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Enhanced text shadow for depth */
+            transition: color 0.3s ease; /* Smooth color transition on hover */
+        }
+        center {
+            text-align: center; /* Center align text */
+            display: block; /* Block display for better layout control */
+        }
+        a {
+            color: #ffffff; /* White link color */
+            text-decoration: none; /* Remove underline from links */
+        }
+        a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+        div1 {
+            margin: 20px 0; /* Margin around divs */
+            text-align: center; /* Center align text in divs */
+            display:block; /* Inline block for better layout control */
+            width: 100%; /* Full width */
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+            padding: 10px 0; /* Padding inside the div */
+            background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background for better visibility */
+            border-radius: 8px; /* Rounded corners for divs */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            max-width: 800px; /* Limit maximum width for better readability */
+            margin-left: auto; /* Center div horizontally */
+            margin-right: auto; /* Center div horizontally */
+            font-family: 'Poppins', sans-serif; /* Poppins font for divs */
+            font-weight: 500; /* Medium weight for divs */
+            letter-spacing: 0.5px; /* Slightly increased letter spacing */
+            word-spacing: 1px; /* Slightly increased word spacing */
+            text-transform: none; /* Normal text transformation */
+            line-height: 1.4; /* Improved line height for readability */
+            overflow: hidden; /* Prevent overflow */
+            white-space: nowrap; /* Prevent text wrapping */
+            margin-top: 30px;
+            margin-bottom: 30px;
+            padding: 15px 20px; /* Padding inside the div */
+            user-select: none; /* Prevent text selection */
+            -webkit-font-smoothing: antialiased; /* Improve font rendering */
+            -moz-osx-font-smoothing: grayscale; /* Improve font rendering on macOS */
+            transition: background-color 0.3s ease; /* Smooth background color transition on hover */
+        }
+        /* Restrict hover/active/focus effects to the custom div tags used in markup */
+        div1:hover, div2:hover, div3:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Slightly darker background on hover */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+            cursor: pointer; /* Pointer cursor on hover */
+            transform: translateY(-4px); /* Slightly move div up on hover */
+            transition: all 0.3s ease; /* Smooth transition for all properties */
+        }
+        div1:active, div2:active, div3:active {
+            background-color: rgba(255, 255, 255, 0.3); /* Even darker background on click */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Reduced shadow on click */
+            transform: translateY(3px); /* Slightly move div down on click */
+        }
+        div1:focus, div2:focus, div3:focus {
+            outline: none; /* Remove default outline on focus */
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Custom focus outline */
+        }
+
+        body {
+            background-color: #f0f0f0; /* Light grey background */
+            padding: 20px; /* Padding around body content */
+            box-sizing: border-box; /* Include padding in element's total width and height */
+            min-height: 100vh; /* Ensure body takes full viewport height */
+            margin: 0; /* Remove default margin */
+            font-family: 'Poppins', sans-serif; /* Poppins font for body */
+            color: #333333; /* Dark grey text color */
+            line-height: 1.6; /* Improved line height for readability */
+            background: linear-gradient(to top, #0452e2, #60b9d7); /* Gradient background */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-y: auto; /* Enable vertical scroll if needed */
+            scroll-behavior: smooth; /* Smooth scrolling */
+            -webkit-font-smoothing: antialiased; /* Improve font rendering */
+            -moz-osx-font-smoothing: grayscale; /* Improve font rendering on macOS */
+        }
+        img {
+            max-width: 100%; /* Responsive image */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 8px; /* Rounded corners for images */
+            margin: 10px 0; /* Margin around images */
+            display: block; /* Block display for better layout control */
+            margin-left: auto; /* Center image horizontally */
+            margin-right: auto; /* Center image horizontally */
+            width: 200px; /* Fixed width */
+            height: 200px; /* Fixed height */
+            object-fit: cover; /* Cover the area without distortion */
+            margin-top: 40px; /* Margin above image */
+            margin-bottom: 20px; /* Margin below image */
+        }
+        div2 {
+            padding: 20px; /* Padding inside the div */
+            margin: 20px auto; /* Margin around the div and center it */
+            max-width: 600px; /* Maximum width for better readability */
+            text-align: center; /* Center align text */
+            font-family: 'Poppins', sans-serif; /* Poppins font */
+        }
+        li {
+            font-family: 'Poppins', sans-serif; /* Poppins font for list items */
+            font-size: 14px; /* Standard font size */
+            color: #ffffff; /* White text color */
+            line-height: 1.6; /* Improved line height for readability */
+            margin: 8px 0; /* Margin around list items */
+            max-width: 700px; /* Limit maximum width for better readability */
+            
+        }
+        ul {
+            list-style-type: disc; /* Disc style for unordered list */
+            padding-left: 20px; /* Padding to the left for better readability */
+            max-width: 700px; /* Limit maximum width for better readability */
+            margin-left: auto; /* Center ul horizontally */
+            margin-right: auto; /* Center ul horizontally */
+            text-align: left; /* Left align text in ul */
+        }
+        div3 {
+            padding: 20px; /* Padding inside the div */
+            margin: 20px auto; /* Margin around the div and center it */
+            max-width: 700px; /* Maximum width for better readability */
+            text-align: left; /* Left align text */
+            font-family: 'opens Sans', sans-serif; /* Open Sans font */
+            font-size: 16px; /* Standard font size */
+            color: #ffffff; /* White text color */
+              margin: 20px 0; /* Margin around divs */
+            text-align: center; /* Center align text in divs */
+            display:block; /* Inline block for better layout control */
+            width: 100%; /* Full width */
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+            padding: 10px 0; /* Padding inside the div */
+            background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background for better visibility */
+            border-radius: 8px; /* Rounded corners for divs */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            max-width: 800px; /* Limit maximum width for better readability */
+            margin-left: auto; /* Center div horizontally */
+            margin-right: auto; /* Center div horizontally */
+            font-weight: 500; /* Medium weight for divs */
+
+        }
+        /* Image gallery styles */
+        * {
+  box-sizing: border-box;
+}
+
+/* Position the image container (needed to position the left and right arrows) */
+.container {
+    position: relative;
+    max-width: 800px;
+    margin: 10px auto 0; /* remove bottom margin so caption sits immediately below */
+    padding: 0;
+}
+
+/* Remove image margins inside the gallery so there's no gap above/below the caption */
+.container img {
+    margin: 0;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 0; /* remove rounded corners */
+}
+
+/* Ensure caption has no extra top spacing */
+.caption-container {
+    margin-top: 0;
+    padding-top: 4px;
+}
+/* Hide the overflow */
+.container img {
+  vertical-align: middle;
+  max-height: 400px;
+}
+/* Hide the images by default */
+.mySlides {
+    display: none;
+}
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%; 
+    width: auto;
+
+}
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.3); /* Subtle shadow for better visibility */
+    color: #1c7fff; /* Blue color for next button */
+}
+.prev {
+    left: 0;
+    border-radius: 0 3px 3px 0;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.3); /* Subtle shadow for better visibility */
+    color: #1c7fff; /* Blue color for next button */
+}
+/* Caption text */
+.caption-container {
+    text-align: center;
+    background-color: #222;
+    padding: 2px 16px;
+    color: white;
+}
+/* Number text (1/3 etc) */
+.numbertext {
+    color: #1c7fff;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+/* Thumbnail images */
+.column {
+    float: left;
+    width: 25%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.row {
+    margin: 0;
+    padding: 0;
+}
+
+.column img {
+    display: block;
+    width: 100%;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+}
+/* Thumbnail image styles */
+.column img {
+    cursor: pointer;
+    width: 100%;
+    height: auto;
+
+
+}
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Six columns side by side */
+.column {
+  float: center;
+  width: 25%;
+}
+
+/* Add a transparency effect for thumnbail images */
+.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+}
+.mySlides img {
+    width: 100%;
+    height: auto;
+    box-shadow: 0 6px 12px rgba(22, 22, 22, 0.2); /* Subtle shadow for depth */
+}
+.alt {
+    font-family: 'Poppins', sans-serif; /* Poppins font for alt text */
+    font-size: 14px; /* Standard font size */
+    color: #ffffff; /* White text color */
+    line-height: 1.6; /* Improved line height for readability */
+    margin: 8px 0; /* Margin around alt text */
+}
+
+
+
+    </style>
+</head>
+
+<body>
+    <!-- This is a comment, used to describe basic code-->
+    
+    <h1>Quentin R. Coombs</h1>
+    <h2>FSU IT Graduate | AWS Certified | Cloud Solutions Architect</h2>
+    
+    <!-- Navigation Buttons -->
+     <div1>
+    <button>About Me</button>
+    <button>Experience</button> 
+    <button>Skills</button>
+    <button>Projects</button>
+    <button>Contact</button>
+    </div1>
+    <!-- End of Navigation Buttons -->
+    <h3>Lab Experience Gallery</h3>
+    <h3>Lab 1: Configure a Relational Database by Using Amazon RDS</h3>
+     <!-- Container for the image gallery -->
+<div class="container">
+
+  <!-- Full-width images with number text -->
+  <div class="mySlides">
+    <div class="numbertext">1 / 4</div>
+      <img src="labpics/lab1pic1.jpg">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">2 / 4</div>
+      <img src="labpics/lab1pic2.jpg">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">3 / 4</div>
+      <img src="labpics/lab1pic3.jpg">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">4 / 4</div>
+      <img src="labpics/lab1pic4.jpg">
+  </div>
+
+
+  <!-- Next and previous buttons -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+  <!-- Image text -->
+  <div class="caption-container">
+    <p id="caption"></p>
+  </div>
+  
+  <!-- Thumbnail images -->
+  <div class="row">
+    <div class="column">
+      <img class="demo cursor" src="labpics/lab1pic1.jpg" style="width:100%" onclick="currentSlide(1)" alt="Step 1. Created security group from the VPC dashboard.""> ">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="labpics/lab1pic2.jpg" style="width:100%" onclick="currentSlide(2)" alt="Step 2. Created a new database from the RDS dashboard.">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="labpics/lab1pic3.jpg" style="width:100%" onclick="currentSlide(3)" alt="Step 3. Configured the database settings and launched the EC2 instance.">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="labpics/lab1pic4.jpg" style="width:100%" onclick="currentSlide(4)" alt="Step 4. Connected to EC2 accessed the database using MySQL Workbench.">
+    </div>
+    </div>
+  </div>
+  <p>Summary: By completing this lab I was able to configure a relational database using Amazon RDS, set up the necessary security groups, launch an EC2 instance, and connect to the database using MySQL Workbench. 
+    This hands-on experience enhanced my understanding of cloud database management and AWS services.</p>
+
+    <!-- End of image gallery container -->
+
+    <!-- Additional gallery template (replace the src attributes with your new photos) -->
+    <h3>Lab 2: Additional Gallery Template</h3>
+    <div class="container">
+      <!-- Full-width images for gallery 2 -->
+      <div class="mySlides2">
+        <div class="numbertext">1 / 4</div>
+        <img src="labpics/lab2pic1.jpg" alt="Lab 2 - image 1">
+      </div>
+
+      <div class="mySlides2">
+        <div class="numbertext">2 / 4</div>
+        <img src="labpics/lab2pic2.jpg" alt="Lab 2 - image 2">
+      </div>
+
+      <div class="mySlides2">
+        <div class="numbertext">3 / 4</div>
+        <img src="labpics/lab2pic3.jpg" alt="Lab 2 - image 3">
+      </div>
+
+      <div class="mySlides2">
+        <div class="numbertext">4 / 4</div>
+        <img src="labpics/lab2pic4.jpg" alt="Lab 2 - image 4">
+      </div>
+
+      <!-- Next and previous buttons for gallery 2 -->
+      <a class="prev" onclick="plusSlides2(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides2(1)">&#10095;</a>
+
+      <!-- Caption for gallery 2 -->
+      <div class="caption-container">
+        <p id="caption2"></p>
+      </div>
+
+      <!-- Thumbnails for gallery 2 -->
+      <div class="row">
+        <div class="column">
+          <img class="demo demo2 cursor" src="labpics/lab2pic1.jpg" style="width:100%" onclick="currentSlide2(1)" alt="Lab 2 - step 1 description">
+        </div>
+        <div class="column">
+          <img class="demo demo2 cursor" src="labpics/lab2pic2.jpg" style="width:100%" onclick="currentSlide2(2)" alt="Lab 2 - step 2 description">
+        </div>
+        <div class="column">
+          <img class="demo demo2 cursor" src="labpics/lab2pic3.jpg" style="width:100%" onclick="currentSlide2(3)" alt="Lab 2 - step 3 description">
+        </div>
+        <div class="column">
+          <img class="demo demo2 cursor" src="labpics/lab2pic4.jpg" style="width:100%" onclick="currentSlide2(4)" alt="Lab 2 - step 4 description">
+        </div>
+      </div>
+    </div>
+
+    <!-- Initialize and control gallery 2 -->
+    <script>
+      let slideIndex2 = 1;
+      showSlides2(slideIndex2);
+
+      function plusSlides2(n) {
+        showSlides2(slideIndex2 += n);
+      }
+
+      function currentSlide2(n) {
+        showSlides2(slideIndex2 = n);
+      }
+
+      function showSlides2(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides2");
+        let dots = document.getElementsByClassName("demo2");
+        let captionText = document.getElementById("caption2");
+
+        if (slides.length === 0) return; // nothing to do if no slides
+
+        if (n > slides.length) { slideIndex2 = 1; }
+        if (n < 1) { slideIndex2 = slides.length; }
+
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+        }
+
+        slides[slideIndex2 - 1].style.display = "block";
+        if (dots[slideIndex2 - 1]) {
+          dots[slideIndex2 - 1].className += " active";
+          captionText.innerHTML = dots[slideIndex2 - 1].alt;
+        } else {
+          captionText.innerHTML = "";
+        }
+      }
+    </script>
+
+<script>
+let slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+// Show slides function
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("demo");
+  let captionText = document.getElementById("caption");
+
+  // Wrap around the slide index
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  // Hide all slides and remove active class from thumbnails
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  // Remove "active" class from all thumbnails
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  // Show the current slide and add "active" class to the corresponding thumbnail
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+  captionText.innerHTML = dots[slideIndex-1].alt;
+}
+</script>
+
+        <p>© 2025 Quentin R. Coombs. All rights reserved.</p>
+   
+</body>
+    
+</html>

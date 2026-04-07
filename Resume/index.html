@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MLanding Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Story+Script&display=swap" rel="stylesheet">
+
+    <style>
+        /* typography */
+        html, body { height: 100%; }
+        :root{
+            --accent: #4ba1fc;
+            --card-bg: rgba(255,255,255,0.02);
+            --muted-border: rgba(255,255,255,0.08);
+            --dark-overlay: linear-gradient(rgba(0,0,0,0.32), rgba(0,0,0,0.18));
+            /* motion tokens for consistent animation timing */
+            --motion-ease: cubic-bezier(.2,.9,.2,1);
+            --motion-fast: 180ms;
+            --motion-medium: 260ms;
+            --motion-slow: 420ms;
+            --text-dark: #0b0b0b;
+        }
+        body {
+            margin: 0; /* remove default page gap that can create a white strip at the top */
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            /* keep body background empty — the layout uses .w3-main for the right-side background */
+        }
+        /* Center headings and make h1 responsive so it doesn't get cut off */
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(32px, 6vw, 92px); /* responsive between 32px and 92px */
+            color: #ffffff;
+            margin: 15px 0 10px;
+            padding: 0;
+            text-align: center;
+            word-wrap: break-word;
+            line-height: 1.05;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        }
+        h2, h3, p { color: #ffffff; text-align: center; }
+        p { max-width:700px; margin:10px auto; }
+        h2 { text-transform:uppercase; user-select:none; }
+        footer { text-align:center; font-size:14px; color:#555; margin:40px 0; }
+        /* left anchored image sidebar */
+
+        .w3-main {
+            position: relative; /* needed for overlay pseudo-element */
+            /* show background.jpg flush to the right of the anchored image, no gaps */
+            background-image: url('background.jpg');
+            background-repeat: no-repeat;
+            background-position: top center;      /* anchor to top so no top gap */
+            background-size: cover; /* cover to fill area */
+            background-attachment: scroll; /* allow background to move with the page scroll */
+
+            /* remove internal whitespace so image reaches all edges of this column */
+            padding: 250px 24px 24px 24px; /* add top padding to offset header and create breathing room */
+            margin: 0;
+            margin-top: 0px; /* offset for header padding */
+            padding-top: 0px;
+        }
+
+        /* overlay to improve contrast between background image and text */
+        .w3-main::before{
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: var(--dark-overlay);
+            pointer-events: none;
+            z-index: 0; /* keep overlay behind normal content flow */
+        }
+
+        /* ensure a usable layout on small screens */
+        @media screen and (max-width: 680px) {
+            .w3-main {
+                background-position: center top;
+                background-size: cover;
+            }
+        }
+        nav.left-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding-top: 80px;  /* add top padding to offset header and create breathing room */
+            height: 100vh;
+            width: 40%;               /* image area width */
+            min-width: 260px;
+            z-index: 2;
+            overflow: hidden;
+            background-color: #333;
+            /* add padding on the left and right for breathing room */
+            padding-left: 20px;
+            padding-right: 20px;
+
+        }
+        .bgimg {
+            /* ensure the left image fills the full viewport height without leaving a gap below */
+            height: 400px;
+            width: 400px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: url('me.jpeg');
+            /* add a circular border and subtle shadow to make the image pop against the background */
+            border-radius: 50%;s
+            box-shadow: 0 8px 30px rgba(3,10,18,0.45);
+            /* center the image within the sidebar */
+            display: block;
+            margin: 0 auto;
+            /* add top padding to offset header and create breathing room */
+            padding: 20px
+    
+            /* ensure the image doesn't get too small on short screens by setting a fixed size, but allow it to scale down on very narrow screens */
+            min-width: 260px;
+            min-height: 260px;
+          
+
+        }
+
+          /* main content shifted to the right of the left image
+              NOTE: keep padding-top at 0 so the .w3-main background sits flush to the top
+          */
+                    /* Constrain the main content to the right 60% and avoid overflow. */
+                    .w3-main { margin-left: 40%; width: 60%; padding: 0 24px 24px 24px; box-sizing: border-box; min-height: 100vh; }
+
+                /* Responsive header padding and content wrapper to avoid clipping and overflow */
+            .site-header { padding: clamp(48px, 15vh, 128px) 16px; position: relative; }
+                h1 { overflow-wrap: anywhere; word-break: break-word; }
+
+            /* Bordered content box so text can't run off the page and remains centered */
+                .content-wrapper {
+                    max-width: 760px;
+                    margin: 24px auto;
+                    padding: 16px 20px;
+                    border: 1px solid var(--muted-border);
+                    border-radius: 8px;
+                    background: var(--card-bg);
+                    box-sizing: border-box;
+                    text-align: center;
+                }
+
+        /* overlay that slides in from the right of the image (initially closed width:0) */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 40%;              /* start directly to the right of the left sidebar */
+            height: 100vh;
+            width: 0;               /* closed */
+            z-index: 3;             /* above the image/sidebar and page content */
+            background-color: rgba(0,0,0,0.9);
+            overflow-x: hidden;
+            transition: width 0.45s ease;
+        }
+
+        .overlay.open {
+            width: 60%;             /* open to take remaining space */
+        }
+        .overlay-content {
+            position: relative;
+            top: 25%;
+            width: 100%;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .overlay a {
+            padding: 8px;
+            text-decoration: none;
+            font-size: 36px;
+            color: #818181;
+            display: block;
+            transition: color 0.2s;
+        }
+        .overlay a:hover, .overlay a:focus { color: #f1f1f1; }
+
+        .overlay .closebtn {
+            position: absolute;
+            top: 20px;
+            right: 45px;
+            font-size: 60px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* small screens: hide fixed left image and let overlay take full width */
+        @media screen and (max-width: 680px) {
+            nav.left-sidebar { display: none; }
+            .w3-main { margin-left: 0; }
+            .overlay { left: 0; } /* overlay will expand full-width on small screens via JS */
+            #menuTrigger {
+                display: block;
+                margin: 20px auto;
+            }
+            img { float: none; margin: 20px auto; }
+            .overlay a { font-size: 28px; }
+            .overlay .closebtn { font-size: 40px; top: 15px; right: 25px; }
+        }
+
+        /* tablet breakpoint: collapse left sidebar earlier and make main content full-width
+           this avoids horizontal overflow on medium screens (tablets) */
+        @media screen and (max-width: 1024px) {
+            nav.left-sidebar { display: none; }
+            .w3-main { margin-left: 0; width: 100%; }
+            .bgimg { display: none; }
+            nav.left-sidebar { position: static; height: auto; }
+        }
+
+        /* tighter mobile rules to avoid large paddings and clipped text */
+        @media screen and (max-width: 480px) {
+            .site-header { padding: clamp(20px, 10vh, 56px) 12px; }
+            h1 { font-size: clamp(24px, 8vw, 48px); }
+            .content-wrapper { padding: 12px; margin: 12px auto; }
+            #menuTrigger { font-size: 18px; padding: 8px 12px; }
+            .menu-popover { padding-top: 56px; }
+            .menu-popover.open { overflow-y: auto; }
+            nav.left-sidebar { min-width: 0; }
+        }
+
+        /* small styling for the Menu trigger */
+        /* center the Menu trigger and place it as a block under the headers */
+        #menuTrigger {
+            display: block;
+            position: relative;
+            z-index: 4;
+            margin: 16px auto 0 auto;
+            padding: 10px 16px;
+            background: rgba(0,0,0,0.6);
+            color: #fff;
+            font-size: 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            user-select: none;
+            text-align: center;
+            width: max-content;
+        }
+        #menuTrigger:hover { background: rgba(0,0,0,0.75); }
+
+        /* Menu popover (desktop) and full-screen modal (mobile) */
+        .menu-popover{
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 50%;
+            transform: translate(-50%, -44%) scale(0.98);
+            min-width: 80px;
+            max-width: 30vw;
+            background: rgba(103, 168, 187, 0.96);
+            color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            padding: 12px 8px;
+            /* center text inside the popover so links and headings are centered */
+            text-align: center;
+
+            /* keep in the flow but hidden by opacity for smooth transitions */
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 9999; /* ensure menu sits above all page content */
+            transition: opacity var(--motion-fast) var(--motion-ease), transform var(--motion-medium) var(--motion-ease);
+        }
+        .menu-popover.open{
+            visibility: visible;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+            pointer-events: auto;
+        }
+    .menu-popover a{ display:block; padding: 10px 14px; color: #fff; text-decoration:none; border-radius:6px; text-align:center; }
+        .menu-popover a:hover{ background: rgba(255,255,255,0.04); }
+
+        /* mobile: full-screen bottom-up modal replacement */
+        @media screen and (max-width: 680px) {
+            .menu-popover{
+                position: fixed;
+                inset: 0;
+                top: auto;
+                transform: translateY(6%);
+                visibility: hidden;
+                opacity: 0;
+                pointer-events: none;
+                background: #0b0b0b;
+                padding: 24px;
+                border-radius: 0;
+                transition: opacity var(--motion-fast) var(--motion-ease), transform var(--motion-medium) var(--motion-ease);
+            }
+            .menu-popover.open{
+                visibility: visible;
+                opacity: 1;
+                transform: translateY(0);
+                pointer-events: auto;
+            }
+            .menu-popover .close-menu{ position: absolute; top: 12px; right: 16px; font-size: 28px; background: none; border: none; color: #fff; }
+        }
+
+        /* Desktop: center the menu as a modal window */
+        @media screen and (min-width: 681px) {
+            .menu-popover{
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -52%) scale(0.98);
+                width: min(760px, 90vw);
+                max-height: 90vh;
+                overflow: auto;
+                padding: 20px 18px;
+                visibility: hidden;
+                opacity: 0;
+                pointer-events: none;
+                border-radius: 12px;
+                transition: opacity var(--motion-fast) var(--motion-ease), transform var(--motion-medium) var(--motion-ease);
+            }
+            .menu-popover.open{
+                visibility: visible;
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+                pointer-events: auto;
+            }
+        }
+
+        /* backdrop behind modal to provide blur and dimming (works where supported) */
+        .modal-backdrop{
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.36);
+            backdrop-filter: blur(6px) saturate(1.05);
+            -webkit-backdrop-filter: blur(6px) saturate(1.05);
+            z-index: 9990; /* sits under the menu (9999) */
+            opacity: 0;
+            transition: opacity var(--motion-medium) ease;
+            pointer-events: auto;
+        }
+        .modal-backdrop.visible{ opacity: 1; }
+
+        /* animated close button */
+        .close-menu{
+            transform: rotate(-12deg) scale(0.92);
+            opacity: 0;
+            transition: transform var(--motion-medium) var(--motion-ease), opacity var(--motion-fast) ease;
+            background: transparent;
+            color: #fff;
+            border: none;
+            text-align: center;
+        }
+        .menu-popover.open .close-menu{
+            transform: rotate(0) scale(1);
+            opacity: 1;
+        }
+
+        /* Enhanced Footer */
+        .page-footer {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 40px 20px;
+            margin-top: 40px;
+            border-top: 3px solid #4ba1fc;
+            backdrop-filter: blur(10px);
+        }
+
+        .index-footer {
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            color: #ffffff;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+        }
+
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+        }
+
+        .footer-section a:hover {
+            color: #4ba1fc;
+            padding-left: 4px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9em;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <!-- Left anchored image -->
+    <nav class="left-sidebar">
+        <div class="bgimg"></div>
+        <!-- optional additional content in the sidebar can go here -->
+         <h3>Certified as an AWS Cloud Practitioner and Solutions Architect</h3>
+         <p>With additional certifications in CompTIA Network+ and Security+ </p>
+         <p>Looking forward to expanding my skillset and applying my knowledge to real-world projects in the future.</p>
+
+        
+    </nav>
+
+    <!-- Page Content (shifted right with margin-left:40%) -->
+    <div class="w3-main">
+
+        <!-- Header -->
+        <header class="site-header" id="home">
+            <h1>Quentin R. Coombs</h1>
+            <h2>AWS Cloud Professional - Solutions Architect</h2>
+            <br>
+            <br>
+            <br>
+            <!-- Menu trigger (centered under H2) -->
+            <span id="menuTrigger" data-menu-trigger onclick="toggleMenu()" aria-expanded="false" aria-controls="menuPanel">Continue</span>
+            <!-- responsive menu: popover on desktop, full-screen modal on mobile -->
+            <nav id="menuPanel" class="menu-popover" role="dialog" aria-modal="false" aria-hidden="true">
+                <button class="close-menu" aria-label="Close menu" onclick="closeMenu()">&times;</button>
+                <a href="index.html" onclick="closeMenu()">Home</a>
+                <a href="aboutMe.html" onclick="closeMenu()">About</a>
+                <a href="Resume/resume.html" onclick="closeMenu()">Resume</a>
+            </nav>
+        </header>
+
+        <div class="content-wrapper">
+            <footer class="page-footer index-footer">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Quentin R. Coombs</h3>
+                        <p>IT Professional | Cloud Solutions Architect</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="aboutMe.html">About</a></li>
+                            <li><a href="Resume/resume.html">Resume</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Connect</h3>
+                        <ul>
+                            <li><a href="mailto:your-email@example.com">Email</a></li>
+                            <li><a href="https://www.linkedin.com/in/quentinrcoombs/" target="_blank">LinkedIn</a></li>
+                            <li><a href="https://github.com" target="_blank">GitHub</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 Quentin R. Coombs. All rights reserved.</p>
+                </div>
+            </footer>
+        </div>
+        
+    </div>
+
+    <!-- The overlay that appears to the right of the anchored image -->
+    <div id="myNav" class="overlay" aria-hidden="true">
+        <a class="closebtn" onclick="closeNav()" aria-label="Close overlay">&times;</a>
+        <div class="overlay-content">
+            <a href="index.html" onclick="closeNav()">Home</a>
+            <a href="aboutMe.html" onclick="closeNav()">About</a>
+            <a href="Resume/resume.html" onclick="closeNav()">Resume</a>
+        </div>
+    </div>
+
+    
+
+    <script>
+        function openNav() {
+            var overlay = document.getElementById("myNav");
+            var vw = window.innerWidth || document.documentElement.clientWidth;
+            if (vw <= 680) {
+                overlay.style.left = "0";
+                overlay.style.width = "100%";
+            } else {
+                overlay.style.left = "40%";  // right of the anchored image
+                overlay.style.width = "60%"; // take remaining space
+            }
+            overlay.classList.add('open');
+            overlay.setAttribute('aria-hidden', 'false');
+            // reflect state on menu trigger if present
+            var mt = document.getElementById('menuTrigger');
+            if(mt) mt.setAttribute('aria-expanded','true');
+        }
+
+        function closeNav() {
+            var overlay = document.getElementById("myNav");
+            overlay.style.width = "0";
+            // restore left for small->large transitions (optional)
+            overlay.style.left = (window.innerWidth <= 680) ? "0" : "40%";
+            overlay.classList.remove('open');
+            overlay.setAttribute('aria-hidden', 'true');
+            var mt = document.getElementById('menuTrigger');
+            if(mt) mt.setAttribute('aria-expanded','false');
+        }
+
+        // close overlay if user resizes to small/large to keep layout consistent
+        window.addEventListener('resize', function() {
+            var overlay = document.getElementById("myNav");
+            if ((window.innerWidth || document.documentElement.clientWidth) > 680 && overlay.style.width === "100%") {
+                // shrink to default closed state and reposition
+                overlay.style.width = "0";
+                overlay.style.left = "40%";
+            }
+        });
+
+        /* Responsive menu (popover on desktop, full-screen modal on mobile) */
+        (function(){
+            var menuTrigger = document.getElementById('menuTrigger');
+            var menuPanel = document.getElementById('menuPanel');
+            var _previousFocus = null;
+
+            window.toggleMenu = function(){
+                if(!menuPanel) return;
+                if(menuPanel.classList.contains('open')) closeMenu(); else openMenu();
+            };
+
+            window.openMenu = function(){
+                if(!menuPanel) return;
+                _previousFocus = document.activeElement;
+                menuPanel.classList.add('open');
+                menuPanel.setAttribute('aria-hidden','false');
+                menuTrigger.setAttribute('aria-expanded','true');
+                // hide the trigger while menu is open to avoid duplicate visible controls
+                try { menuTrigger.style.display = 'none'; } catch(e){}
+                if(window.innerWidth <= 680) {
+                    menuPanel.setAttribute('aria-modal','true');
+                } else {
+                    // desktop modal behavior
+                    menuPanel.setAttribute('aria-modal','true');
+                }
+                // focus first interactive element
+                var first = menuPanel.querySelector('a, button');
+                if(first) first.focus();
+                document.addEventListener('click', menuOutsideClick);
+                document.addEventListener('keydown', menuKeydown);
+                // create and show backdrop
+                try {
+                    if(!menuPanel._backdrop){
+                        var bd = document.createElement('div');
+                        bd.className = 'modal-backdrop';
+                        bd.addEventListener('click', function(){ closeMenu(); });
+                        document.body.appendChild(bd);
+                        // small timeout to trigger CSS transition (keep >0 so the browser applies initial style)
+                        setTimeout(function(){ bd.classList.add('visible'); }, 20);
+                        menuPanel._backdrop = bd;
+                    }
+                } catch(e) { /* ignore backdrop errors */ }
+            };
+
+            window.closeMenu = function(){
+                if(!menuPanel) return;
+                menuPanel.classList.remove('open');
+                menuPanel.setAttribute('aria-hidden','true');
+                menuTrigger.setAttribute('aria-expanded','false');
+                menuPanel.setAttribute('aria-modal','false');
+                // restore the trigger visibility
+                try { menuTrigger.style.display = ''; } catch(e){}
+                document.removeEventListener('click', menuOutsideClick);
+                document.removeEventListener('keydown', menuKeydown);
+                // remove backdrop if present
+                try {
+                    if(menuPanel._backdrop){
+                        var _bd = menuPanel._backdrop;
+                        _bd.classList.remove('visible');
+                        // wait for the CSS transition to finish before removing from DOM; match --motion-medium (260ms)
+                        setTimeout(function(){ if(_bd.parentNode) _bd.parentNode.removeChild(_bd); }, 260);
+                        menuPanel._backdrop = null;
+                    }
+                } catch(e) { /* ignore */ }
+                if(_previousFocus && typeof _previousFocus.focus === 'function') _previousFocus.focus();
+                _previousFocus = null;
+            };
+
+            function menuOutsideClick(e){
+                if(!menuPanel) return;
+                if(menuPanel.contains(e.target) || menuTrigger.contains(e.target)) return;
+                closeMenu();
+            }
+
+            function menuKeydown(e){
+                if(e.key === 'Escape' || e.key === 'Esc'){
+                    closeMenu();
+                }
+            }
+        })();
+    </script>
+</body>
+
+
+
+</html>

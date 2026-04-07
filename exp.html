@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>My Web Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Story+Script&display=swap" rel="stylesheet">
+
+    
+    <style>
+        li {
+            font-family: 'monospace', monospace; /* Monospace font for list items */
+            font-size: 12px; /* Slightly smaller font size for list items */
+            color: #ffffff; /* White text color */
+            margin: 5px 0; /* Margin around list items */
+            line-height: 1.4; /* Improved line height for readability */
+            letter-spacing: 0.5px; /* Slightly increased letter spacing */
+            word-spacing: 1px; /* Slightly increased word spacing */
+        }
+        button {
+            background-color: #78c0f0; /* White background */
+            border: rgb(255, 255, 255) 2px solid; /* Black border */
+            color: #ffffff; /* Blue text */
+            padding: 10px 15px 10px; /* Some padding */
+            cursor: pointer; /* Pointer/hand icon on hover */
+            font-size: 20px; /* Increase font size */
+            margin: 5px 0px 3px 10px; /* Some margin */
+            border-radius: 6px; /* Rounded corners */
+            transition: background-color 0.6s, color 0.6s; /* Smooth transition for hover effects */
+            font-family: 'Poppins', sans-serif; /* Poppins font */
+            font-weight: 550; /* Medium weight */
+            box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+            letter-spacing: 0.5px; /* Slightly increased letter spacing */
+            text-transform: uppercase; /* Uppercase text */
+            width: 120px; /* Fixed width for uniformity */
+            height: 40px; /* Fixed height for uniformity */
+            display: inline-block; /* Align buttons horizontally */
+            text-align: center; /* Center text */
+            line-height: 20px; /* Adjust line height for better vertical alignment */
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+            font-size: 14px; /* Slightly smaller font size for better fit */
+            font-weight: 600; /* Semi-bold weight */
+            letter-spacing: 1px; /* Increased letter spacing for better readability */
+            text-transform: uppercase; /* Uppercase text for a modern look */
+            transition: all 0.3s ease; /* Smooth transition for all properties */
+            user-select: none; /* Prevent text selection on click */
+            outline: none; /* Remove default outline */
+            vertical-align: middle; /* Align buttons vertically in the middle */
+            white-space: nowrap; /* Prevent text from wrapping */
+            margin: 10px; /* Margin around buttons */
+
+            
+        }
+
+        button:hover {
+            background-color: #4ba1fc; /* Blue background on hover */
+            color: #ffffff; /* White text on hover */
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+        }
+        button:active {
+            background-color: #0485e2; /* Darker blue background on click */
+            color: #ffffff; /* White text on click */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow on click */
+            transform: translateY(2px); /* Slightly move button down on click */
+        }
+        button:focus {
+            outline: none; /* Remove default outline on focus */
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Custom focus outline */
+        }
+        button:disabled {
+            background-color: #cccccc; /* Grey background for disabled button */
+            color: #666666; /* Dark grey text for disabled button */
+            cursor: not-allowed; /* Not-allowed cursor for disabled button */
+            box-shadow: none; /* Remove shadow for disabled button */
+        }
+        button:disabled:hover {
+            background-color: #cccccc; /* Maintain grey background on hover */
+            color: #666666; /* Maintain dark grey text on hover */
+            box-shadow: none; /* No shadow on hover */
+        }
+        button:disabled:active {
+            background-color: #cccccc; /* Maintain grey background on click */
+            color: #666666; /* Maintain dark grey text on click */
+            box-shadow: none; /* No shadow on click */
+            transform: none; /* No movement on click */
+        }
+        button:disabled:focus {
+            outline: none; /* Remove default outline on focus */
+            box-shadow: none; /* No focus outline */
+        }
+        button:visited {
+            color: #ffffff; /* Maintain white text for visited buttons */
+        }
+        button::after {
+            content: ''; /* Empty content for pseudo-element */
+            display: block; /* Block display for better layout control */
+            width: 0; /* Initial width */
+            height: 1px; /* Height of the underline */
+            background-color: #ffffff; /* White underline color */
+            transition: width 0.3s ease; /* Smooth width transition */
+            margin-top: 0px; /* Margin above the underline */
+            margin-left: auto; /* Center underline horizontally */
+            margin-right: auto; /* Center underline horizontally */
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
+            text-align: center; /* Center align text */
+        }
+        button:hover::after {
+            width: 100%; /* Full width underline on hover */
+            transition: width 0.3s ease; /* Smooth width transition */
+            cursor: pointer; /* Pointer cursor on hover */
+        }
+        button:active::after {
+            width: 100%; /* Full width underline on click */
+            transition: width 0.3s ease; /* Smooth width transition */
+        }
+        button:focus::after {
+            width: 100%; /* Full width underline on focus */
+            transition: width 0.3s ease; /* Smooth width transition */
+        }        
+
+        h2 {
+            font-family: 'Poppins', sans-serif; /* Poppins font for h2 */
+            font-size: 14px; /* Slightly smaller font size for h2 */
+            color: #ffffff; /* White text color */
+            margin: 5px 0 15px 0; /* Margin around h2 */
+            font-weight: 400; /* Normal weight for h2 */
+            text-align: center; /* Center align text */
+            letter-spacing: 1px; /* Slightly increased letter spacing */
+            word-spacing: 2px; /* Slightly increased word spacing */
+            line-height: 1.4; /* Improved line height for readability */
+            text-transform: uppercase; /* Uppercase text for a modern look */
+            user-select: none; /* Prevent text selection */
+            padding-top: 3px; /* Padding inside the h2 */
+            -webkit-font-smoothing: antialiased; /* Improve font rendering */
+            -moz-osx-font-smoothing: grayscale; /* Improve font rendering on macOS */
+        }
+        h1 {
+            font-family: 'Great Vibes', cursive; /* Great Vibes font for h1 */
+            font-size: 46px; /* Large font size for h1 */
+            color: #ffffff; /* White text color */
+            margin: 15px 0; /* Margin around h1 */
+            font-weight: 400; /* Normal weight for h1 */
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle text shadow for better readability */
+            letter-spacing: 1px; /* Slightly increased letter spacing */
+            text-align: center; /* Center align text */
+            line-height: 1.2; /* Improved line height for readability */
+            word-spacing: 2px; /* Slightly increased word spacing */
+            text-transform: none; /* Normal text transformation */
+            max-width: 90%; /* Limit maximum width for better readability */
+            margin-left: auto; /* Center h1 horizontally */
+            margin-right: auto; /* Center h1 horizontally */
+            overflow: hidden; /* Prevent overflow */
+            white-space: nowrap; /* Prevent text wrapping */
+            text-overflow: ellipsis; /* Ellipsis for overflowed text */
+            padding: 0 10px; /* Padding inside the h1 */
+            box-sizing: border-box; /* Include padding in element's total width and height */
+            margin-top: 30px; /* Margin above h1 */
+            margin-bottom: 10px; /* Margin below h1 */
+            line-height: 1.2; /* Improved line height for readability */
+            user-select: none; /* Prevent text selection */
+            -webkit-font-smoothing: antialiased; /* Improve font rendering */
+            -moz-osx-font-smoothing: grayscale; /* Improve font rendering on macOS */
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Enhanced text shadow for depth */
+            transition: color 0.3s ease; /* Smooth color transition on hover */
+        }
+        center {
+            text-align: center; /* Center align text */
+            display: block; /* Block display for better layout control */
+        }
+        a {
+            color: #ffffff; /* White link color */
+            text-decoration: none; /* Remove underline from links */
+        }
+        a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+        /* Navigation Div Styles */
+        .nav {
+            display: inline-block; /* shrink to content instead of full width */
+            margin: 0px 30px 0px 30px auto; /* center when inline-block (parent text-align:center already set) */
+            text-align: center;
+            box-sizing: border-box;
+            padding: 15px 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: auto; /* ensure it doesn't expand to full width */
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            word-spacing: 1px;
+            line-height: 1.4;
+            overflow: visible; /* allow hover effects without forcing full-width clipping */
+            white-space: nowrap; /* keep buttons on one line */
+            user-select: none;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .nav:hover {
+            background-color: rgba(255, 255, 255, 0.2); /* Slightly darker background on hover */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+            cursor: pointer; /* Pointer cursor on hover */
+            transform: translateY(-4px); /* Slightly move div up on hover */
+            transition: all 0.3s ease; /* Smooth transition for all properties */
+        }
+        .nav:active {
+            background-color: rgba(255, 255, 255, 0.3); /* Even darker background on click */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Reduced shadow on click */
+            transform: translateY(3px); /* Slightly move div down on click */
+        }
+        .nav:focus {
+            outline: none; /* Remove default outline on focus */
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Custom focus outline */
+        }
+        body {
+            background-color: #f0f0f0; /* Light grey background */
+            text-align: center; /* Center align text */
+            background: linear-gradient(to top, #0452e2, #60b9d7); /* Gradient background */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-y: auto; /* Enable vertical scroll if needed */
+            scroll-behavior: smooth; /* Smooth scrolling */
+            -webkit-font-smoothing: antialiased; /* Improve font rendering */
+            -moz-osx-font-smoothing: grayscale; /* Improve font rendering on macOS */
+    
+        }
+                    /* ===== TIMELINE ===== */
+                    /* Styles for the experience section */
+#experience {
+    max-width: 900px;
+    margin: 0px auto 0; /* reduce top gap to bring section closer to nav */
+    padding: 5px 20px;
+    background: transparent;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+}
+
+#experience h3 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 40px;
+    font-weight: 600;
+    text-shadow: #4aecfe 1px 1px 2px;
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    position: relative;
+    padding: 0 10px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, #00ffcc, #0099ff);
+}
+
+.timeline-item {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 50%;
+    top: 20px;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background: #00ffcc;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #00ffcc;
+    z-index: 2;
+}
+
+.timeline-inner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.timeline-inner.reverse {
+    flex-direction: row-reverse;
+}
+
+.timeline-image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-left: 120px;
+    cursor: pointer;
+    transform-origin: center;
+    transform: translateY(0) scale(1) rotate(-2deg);
+    filter: grayscale(15%) contrast(1.03) saturate(1.05) brightness(0.98);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.25), 0 0 18px rgba(0,255,204,0.06) inset;
+    border: 2px solid rgba(255,255,255,0.06);
+    transition: transform 0.35s ease, filter 0.35s ease, box-shadow 0.35s ease;
+    will-change: transform, filter, box-shadow;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+.timeline-image2 img {
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-right: 140px;
+    cursor: pointer;
+    transform-origin: center;
+    transform: translateY(0) scale(1) rotate(5deg);
+    filter: grayscale(15%) contrast(1.03) saturate(1.05) brightness(0.98);
+    box-shadow: 0 12px 25px rgba(255, 255, 255, 0.25), 0 0 18px rgba(0,255,204,0.06) inset;
+    border: 2px solid rgba(255,255,255,0.06);
+    transition: transform 0.35s ease, filter 0.35s ease, box-shadow 0.35s ease;
+    will-change: transform, filter, box-shadow;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.timeline-content {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 12px;
+    backdrop-filter: blur(8px);
+    width: 45%;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.2);
+}
+
+.timeline-content h4 {
+    color: #00ffcc;
+    margin-bottom: 5px;
+}
+
+.timeline-content h5 {
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.timeline-content p,
+.timeline-content li {
+    color: #ffffff;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* MOBILE RESPONSIVE */
+@media screen and (max-width: 768px) {
+    .timeline-inner,
+    .timeline-inner.reverse {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .timeline-image img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .timeline-dot {
+        left: 0;
+        transform: translateX(0);
+    }
+}
+    .timeline-item:nth-child(odd) .timeline-inner {
+        flex-direction: row;
+    }
+    ul {
+        margin: 8px 0 0 20px;
+        padding-left: 20px;
+        font-size: 0.75rem;
+        color: #ffffff;
+        text-align: left;
+        list-style-type: disc;
+        line-height: 1.5;
+    }
+    /* make items alternate: even items show image on the left, text on the right */
+    .timeline-item:nth-child(even) .timeline-inner {
+        flex-direction: row-reverse;
+    }
+
+    /* adjust spacing so images don't stick to the center line */
+    .timeline-item:nth-child(even) .timeline-image img {
+        margin-left: 0;
+        margin-right: 50px;
+    }
+
+    /* keep mobile behavior unchanged */
+    @media screen and (max-width: 768px) {
+        .timeline-item:nth-child(even) .timeline-inner {
+            flex-direction: column;
+        }
+        .timeline-item:nth-child(even) .timeline-image img {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        /* adjust dot position for mobile */
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: 0;
+            transform: translateX(0);
+        }
+        /* adjust text alignment for mobile */
+        .timeline-item:nth-child(even) .timeline-content {
+            text-align: center;
+        }
+    }
+    /* Scroll Animation Styles */
+    .timeline-item {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    /* When the item is in view, add the 'show' class */
+    .timeline-item.show {
+        opacity: 1;
+        transform: translateY(0);
+
+}
+
+}
+   
+
+    </style>
+</head>
+
+<body>
+    <!-- This is a comment, used to describe basic code-->
+    
+    <h1>Quentin R. Coombs</h1>
+    <h2>FSU IT Graduate | Cyber-Security Specialist | Specialized in Sec, Net, and Cloud</h2>
+    
+    <!-- Navigation Buttons -->
+     <section id="navigation">
+    
+        <div class="nav">
+        <button>About Me</button>
+        <button>Experience</button> 
+        <button>Skills</button>
+        <button>Projects</button>
+        <button>Contact</button>
+        </div>
+        
+    </section>
+    <!-- End of Navigation Buttons -->
+    <br>
+    
+                    <section id="experience">
+                    <h3>Professional Experience</h3>
+                    <div class="timeline">
+
+                        <!-- Timeline Item 1 -->
+                        <div class="timeline-item"> 
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-inner">
+                                <div class="timeline-content">
+                                    <h4>Skillable</h4>
+                                    <h5>Platform Support Analyst</h5>
+                                    <p>Nov 2025-Current</p>
+                                    <ul>
+                                        <li>Provided technical support for virtualized labs, assisting users
+                                        with inquries and troubleshooting as needed</li>
+                                        <li>Set up and maintained lab environments using virtualization
+                                            technologies such as VMware and VirtualBox</li>
+                                        <li>Gained valuable experience in cloud computing platforms, including AWS <br>
+                                        and Azure, by assisting with lab deployments and configurations</li>
+
+                                    </ul>
+                                </div>
+                                <div class="timeline-image">
+                                    <img src="Skill.png" alt="Skillable Logo">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 1 -->
+                        <div class="timeline-item"> 
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-inner">
+                                <div class="timeline-content">
+                                    <h4>Syntech Systems</h4>
+                                    <h5>Help Desk Administator</h5>
+                                    <p>2022 – 2025</p>
+                                    <ul>
+                                        <li>Provided support for Linux-based fuel systems and Windows PCs</li>
+                                        <li>Maintained and troubleshot network connectivity issues using 
+                                            IMCP protocols and firewalls.</li>
+                                        <li>Diagnosed and restored system functionality via log analysis.</li>
+                                        <li>Contracted with public trust clearance for access to mission 
+                                            critical systems with the U.S Border Patrol</li>
+
+                                    </ul>
+                                </div>
+                                <div class="timeline-image2">
+                                    <img src="syntech.jpg" alt="Syntech Systems Logo">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 2 -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-inner">
+                                <div class="timeline-content">
+                                    <h4>VIPDesk Connect</h4>
+                                    <h5>Technical Support Supervisor</h5>
+                                    <p>2021 – 2022</p>
+                                    <ul>
+                                        <li>Performed Tier 1-2 triage on Bluetooth devices and mobile 
+                                            apps, using Jira to track bugs and disconnections. </li>
+                                        <li>Promoted to Supervisor role for technical depth, 
+                                            leadership potential, and advanced troubleshooting skills </li>
+                                        <li>Managed a team of 30+ agents, providing coaching and performance feedback</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-image">
+                                    <img src="vip.png" alt="VIPDesk Logo">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 3 -->
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-inner">
+                                <div class="timeline-content">
+                                    <h4>Florida State University</h4>
+                                    <h5>Production Support Technician</h5>
+                                    <p>2019-2020</p>
+                                    <ul>
+                                        <li>Assisted with configuring audio and video needs for on campus events</li>
+                                        <li>Maintained and troubleshot classroom technology, including projectors, 
+                                            smart boards, and sound systems</li>
+                                        <li>Provided technical support for faculty and staff, resolving issues 
+                                            related to software and hardware</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-image2">
+                                    <img src="fsu.png" alt="FSU logo">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+
+        <script>
+        // Simple Scroll Animation using Intersection Observer
+        const items = document.querySelectorAll('.timeline-item');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+            }
+            });
+        });
+
+        items.forEach(item => observer.observe(item));
+        </script>
+
+    <p>Thank you for visiting!</p>
+    <p>Contact me at: quentinrcoombs@yahoo.com</p>
+    
+    <br>
+
+        <p>© 2025 Quentin R. Coombs. All rights reserved.</p>
+   
+</body>
+    
+</html>

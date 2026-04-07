@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../JavaPjs/StudyPrep"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "HTML"
+	}
+}
